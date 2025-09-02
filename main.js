@@ -2,7 +2,9 @@ import data from '/data.js'
 
 const { fighters, weapons } = data
 
-console.log("🔥 TORNEO BOOLKAICHI INIZIATO! 🔥\n");
+console.log("🔥 TORNEO BOOLKAICHI INIZIATO! 🔥");
+
+console.log("\n");
 
 // FASE 1: SCELTA DELL'ARMA
 console.log("=== FASE 1: 🗡️ SCELTA DELL'ARMA ===");
@@ -21,6 +23,8 @@ fightersWithWeapons.forEach((fighter, index) => {
     fighter.weapon = chosenWeapon;
     console.log(`${fighter.name} ha scelto: ${chosenWeapon.name} (potenza +${chosenWeapon.power})`);
 });
+
+console.log("\n");
 
 // FASE 2: ALLENAMENTO
 console.log("=== FASE 2: 💪 ALLENAMENTO ===");
@@ -45,4 +49,17 @@ const trainedFighters = fightersWithWeapons.map(fighter => {
         power: newPower,
         trainingMultiplier: trainingMultiplier
     };
+});
+
+console.log("\n");
+
+// FASE 3: QUALIFICAZIONI
+console.log("=== FASE 3: 🎯 QUALIFICAZIONI ===");
+
+// Escludiamo dal torneo chi non ha superato una potenza di almeno 2000
+const qualificationFighters = trainedFighters.filter((fighter)=> fighter.power >= 2000)
+
+console.log("Combattenti qualificati (potenza ≥ 2000):");
+qualificationFighters.forEach(fighter => {
+    console.log(`✅ ${fighter.name}: ${fighter.power}`);
 });
