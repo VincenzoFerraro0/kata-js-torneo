@@ -21,3 +21,28 @@ fightersWithWeapons.forEach((fighter, index) => {
     fighter.weapon = chosenWeapon;
     console.log(`${fighter.name} ha scelto: ${chosenWeapon.name} (potenza +${chosenWeapon.power})`);
 });
+
+// FASE 2: ALLENAMENTO
+console.log("=== FASE 2: 💪 ALLENAMENTO ===");
+
+// Ogni combattente si allena e la sua potenza viene moltiplicata per un numero casuale tra 1 e 100
+const trainedFighters = fightersWithWeapons.map(fighter => {
+    const trainingMultiplier = Math.floor(Math.random() * 100) + 1;
+    let newPower;
+    
+    // 50% di probabilità che l'allenamento funzioni
+    if (Math.random() > 0.5) {
+        newPower = Math.floor(fighter.power * trainingMultiplier);
+        console.log(`${fighter.name}: ${fighter.power} → ${newPower} (x${trainingMultiplier}) ✅`);
+    } else {
+        newPower = fighter.power; // Mantiene la potenza originale
+        console.log(`${fighter.name}: ${fighter.power} → ${newPower} (allenamento fallito) ❌`);
+    }
+    
+    return {
+        ...fighter,
+        originalPower: fighter.power,
+        power: newPower,
+        trainingMultiplier: trainingMultiplier
+    };
+});
